@@ -1,0 +1,61 @@
+/*
+ * @category  StarterProject
+ * @author    Omar Elshopky <omar.elshopky202@gmail.com | info@cyberusorg.com>
+ * @license   http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ * @copyright Copyright (c) 2023 Cyberus Org, Inc (https://cyberusorg.com)
+ */
+
+:root {
+    --my-account-content-background: #{$white};
+    --my-account-wrapper-margin-mobile: 16px;
+    --my-account-content-border: 1px solid rgba(10, 9, 3, 0.16);
+}
+
+.MyAccount {
+    background: var(--my-account-background);
+
+    &-Wrapper {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+        grid-column-gap: 24px;
+        grid-row-gap: 0;
+        padding-block-start: 12px;
+        padding-block-end: 12px;
+
+        @include mobile {
+            grid-column-gap: 28px;
+            padding: 0;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &-TabContent {
+        background: var(--my-account-content-background);
+        @include mobile {
+            margin-inline: var(--my-account-wrapper-margin-mobile);
+        }
+
+        @include desktop {
+            border: var(--my-account-content-border);
+            grid-row: span 2;
+            padding: 24px;
+        }
+    }
+
+    &-Heading {
+        text-transform: none;
+        margin: 0;
+        margin-block-end: 24px;
+
+        @include mobile {
+            margin-block-end: 28px;
+            display: none;
+        }
+    }
+
+    &-SubHeading {
+        color: var(--secondary-dark-color);
+        font-size: 16px;
+    }
+}

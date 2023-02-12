@@ -1,0 +1,50 @@
+/*
+ * @category  StarterProject
+ * @author    Omar Elshopky <omar.elshopky202@gmail.com | info@cyberusorg.com>
+ * @license   http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ * @copyright Copyright (c) 2023 Cyberus Org, Inc (https://cyberusorg.com)
+ * @link https://github.com/scandipwa/base-theme
+ */
+
+.MyAccountDashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+
+    @include mobile {
+        grid-gap: 28px;
+    }
+
+    @include desktop {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 48px;
+    }
+
+    &-DefaultAddress {
+        @include desktop {
+            grid-row: 2;
+        }
+    }
+
+    &-CustomerData {
+        @include desktop {
+            grid-column: span 2;
+        }
+    }
+
+    &-Info {
+        margin-block-end: 5px;
+    }
+
+    button + button {
+        margin-block-start: 12px;
+
+        @include mobile {
+            margin-block-start: 14px;
+        }
+
+        @include desktop {
+            margin-inline-start: 12px;
+        }
+    }
+}

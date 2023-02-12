@@ -1,0 +1,116 @@
+/*
+ * @category  StarterProject
+ * @author    Omar Elshopky <omar.elshopky202@gmail.com | info@cyberusorg.com>
+ * @license   http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ * @copyright Copyright (c) 2023 Cyberus Org, Inc (https://cyberusorg.com)
+ */
+
+:root {
+    --popup-background: #0003;
+    @include mobile {
+        --popup-content-padding: 14px;
+    }
+
+    --popup-content-background: #{$white};
+    --popup-min-width: 100%;
+    --popup-content-padding: 12px;
+
+    @include desktop {
+        --popup-min-width: 490px;
+        --popup-content-padding: 24px;
+    }
+}
+
+.Popup {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 400;
+    position: fixed;
+    background-color: var(--popup-background);
+    inset-inline-start: 0;
+    inset-block-start: var(--header-total-height);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mobile {
+        align-items: stretch;
+    }
+
+    &_isVisible {
+        pointer-events: all;
+        opacity: 1;
+        width: 100vw;
+        height: 100vh;
+        inset-block-start: 0;
+
+        @include mobile {
+            inset-block-start: var(--header-total-height);
+            height: calc(100% - var(--header-total-height));
+        }
+    }
+
+    &-Heading {
+        text-decoration: none;
+        font-weight: 400;
+        margin-block-start: 0;
+    }
+
+    &-Header {
+        @include mobile {
+            display: none;
+        }
+    }
+
+    &-Content {
+        background-color: var(--popup-content-background);
+        border-radius: 5px;
+        padding: var(--popup-content-padding);
+        min-width: var(--popup-min-width);
+        max-width: calc(var(--content-wrapper-width) * .8);
+        max-height: 80%;
+        overflow-y: auto;
+
+        @include mobile {
+            border-radius: 0;
+            max-height: 100%;
+        }
+    }
+
+    & &-CloseBtn {
+        position: absolute;
+        inset-block-start: -4px;
+        inset-inline-end: -6px;
+        z-index: 5;
+
+        .CloseIcon {
+            height: 30px;
+            width: 30px;
+        }
+
+        @include mobile {
+            inset-block-start: 25px;
+        }
+    }
+
+    .Loader {
+        @include mobile {
+            position: fixed;
+        }
+    }
+
+    .NotificationList {
+        width: 100vw;
+        inset-block-start: 0;
+        inset-inline-start: calc(0px - var(--popup-content-padding));
+        position: relative;
+    }
+}
+
+.scrollDisabled {
+    position: fixed;
+    margin-block-start: 0;
+    width: 100%;
+    overflow-y: auto;
+}

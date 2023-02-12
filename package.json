@@ -1,15 +1,23 @@
 {
-  "name": "react-typescript-starter-project",
-  "version": "0.1.0",
+  "name": "react-starter-project",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@bem-react/classname": "^1.5.12",
+    "@craco/craco": "^7.0.0",
+    "bootstrap": "^5.2.3",
+    "intersection-observer": "^0.12.2",
+    "prop-types": "^15.8.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-intersection-observer": "^9.4.2",
+    "react-redux": "^8.0.5",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
+    "rebem-classname": "^0.4.0",
+    "redux": "^4.2.1",
+    "unstated": "^2.1.1",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",
     "workbox-cacheable-response": "^6.5.4",
@@ -24,10 +32,12 @@
     "workbox-streams": "^6.5.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +56,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "eslint": "^8.34.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-react": "^7.32.2",
+    "sass": "^1.58.0",
+    "sass-loader": "^13.2.0"
   }
 }

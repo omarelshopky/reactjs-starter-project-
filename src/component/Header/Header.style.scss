@@ -1,0 +1,320 @@
+/*
+ * @category  StarterProject
+ * @author    Omar Elshopky <omar.elshopky202@gmail.com | info@cyberusorg.com>
+ * @license   http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ * @copyright Copyright (c) 2023 Cyberus Org, Inc (https://cyberusorg.com)
+ */
+
+:root {
+    --header-logo-width: 194px;
+    --header-logo-height: 24px;
+
+    --header-height: 60px;
+    --header-nav-height: 60px;
+    --header-total-height:
+        calc(
+            var(--header-height)
+            + var(--offline-notice-height)
+            + var(--demo-notice-height)
+            + env(safe-area-inset-top)
+        );
+
+    @include desktop {
+        --header-top-menu-height: 32px;
+        --header-height: calc(var(--header-nav-height) + var(--header-top-menu-height) + var(--menu-total-height));
+    }
+}
+
+@mixin button-invisible {
+    margin: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+
+@mixin button-visible {
+    opacity: 1;
+    height: 25px;
+    width: 25px;
+    pointer-events: all;
+    overflow: visible;
+    cursor: pointer;
+}
+
+@mixin visible-on-mobile {
+    @include button-visible;
+
+    @include desktop {
+        @include button-invisible;
+    }
+}
+
+@mixin logo-visible {
+    opacity: 1;
+    max-width: 100%;
+}
+
+.Header {
+    align-items: center;
+    background: var(--color-white);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-block-start: env(safe-area-inset-top, 0);
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    border-block-end: 1px solid var(--primary-divider-color);
+    inset-block-start: var(--demo-notice-height);
+
+    > * {
+        max-width: var(--content-wrapper-width);
+        width: 100%;
+    }
+
+    &_menu,
+    &_menu_subcategory {
+        .Header-Button_type {
+            &_close {
+                @include desktop {
+                    @include button-visible;
+                }
+            }
+
+            &_menu {
+                @include desktop {
+                    @include button-invisible;
+                }
+            }
+        }
+    }
+
+    &_name {
+        &_menu,
+        &_search,
+        &_menu_subcategory {
+            border-block-end: none;
+        }
+
+        &_category {
+            position: fixed;
+
+            @include mobile {
+                border-block-end: none;
+            }
+        }
+    }
+
+    &-Button {
+        @include button-invisible;
+
+        &_isVisible {
+            @include mobile {
+                @include button-visible;
+            }
+        }
+
+        &_isDisabled {
+            pointer-events: none;
+            opacity: .1;
+        }
+
+        &_type {
+            &_menu,
+            &_minicart {
+                @include button-visible;
+
+                @include desktop {
+                    height: 24px;
+                    margin-inline-start: 35px;
+                }
+            }
+
+            &_account {
+                @include button-visible;
+            }
+
+            &_home {
+                @include visible-on-mobile;
+            }
+
+            &_minicart {
+                @include desktop {
+                    margin-inline-start: 35px;
+                }
+            }
+
+            &_back {
+                .ChevronIcon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            &_close {
+                .CloseIcon {
+                    width: 27px;
+                    height: 27px;
+                }
+            }
+
+            &_share {
+                @include button-visible;
+            }
+
+            &_compare {
+                @include button-visible;
+            }
+        }
+
+        &[aria-hidden="true"] {
+            display: none;
+        }
+    }
+
+    &-LogoWrapper {
+        inset-block-end: 0;
+        height: var(--header-logo-height);
+        inset-inline-start: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        inset-inline-end: 0;
+        inset-block-start: 0;
+        width: var(--header-logo-width);
+
+        @include mobile {
+            margin: auto;
+        }
+
+        @include desktop {
+            @include logo-visible;
+        }
+
+        &_isVisible {
+            @include logo-visible;
+        }
+    }
+
+    &-Nav {
+        align-items: center;
+        display: flex;
+        flex-direction: row-reverse;
+        height: var(--header-nav-height);
+        padding-inline: 14px;
+
+        @include desktop {
+            justify-content: unset;
+            padding-inline: 32px;
+        }
+    }
+
+    &-MyAccount {
+        @include desktop {
+            height: 24px;
+        }
+    }
+
+    &-Title {
+        color: var(--header-color);
+        margin: auto;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        inset-inline-end: 0;
+        text-align: center;
+        text-overflow: ellipsis;
+        inset-block-start: -1px;
+        inset-inline-start: 0;
+        inset-block-end: 0;
+        transition-duration: 200ms;
+        transition-property: opacity;
+        white-space: nowrap;
+        width: 100%;
+        text-transform: inherit;
+        line-height: 30px;
+        height: 30px;
+
+        &_isVisible {
+            @include mobile {
+                opacity: 1;
+                max-width: calc(100% - 80px);
+            }
+        }
+    }
+
+    &-Welcome {
+        display: none;
+        font-size: 14px;
+        margin-inline-end: 16px;
+        text-align: end;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+        align-self: center;
+        line-height: 16px;
+
+        @include wide-desktop {
+            display: block;
+        }
+    }
+
+    &-TopMenu,
+    &-Nav {
+        display: flex;
+        margin: auto;
+        max-width: var(--content-wrapper-width);
+    }
+
+    &-TopMenu {
+        justify-content: space-between;
+        height: var(--header-top-menu-height);
+        padding-inline: 32px;
+        padding-block-start: 16px;
+    }
+
+    &-Wrapper {
+        display: flex;
+        justify-content: center;
+        margin-block-end: var(--header-total-height);
+
+        &_isPrerendered {
+            @include mobile {
+                .Header-TopMenu,
+                .Menu-MenuWrapper {
+                    display: none;
+                }
+
+                .Header-Nav {
+                    & > * {
+                        display: none;
+                    }
+
+                    .Header {
+                        &-Title,
+                        &-LogoWrapper,
+                        &-Button {
+                            &_isVisible {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &_name_popup {
+        z-index: 400;
+    }
+
+    &-MyAccountContainer {
+        display: flex;
+        margin-inline-start: auto;
+    }
+}

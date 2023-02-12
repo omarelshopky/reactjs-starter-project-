@@ -1,0 +1,38 @@
+/*
+ * @category  StarterProject
+ * @author    Omar Elshopky <omar.elshopky202@gmail.com | info@cyberusorg.com>
+ * @license   http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ * @copyright Copyright (c) 2023 Cyberus Org, Inc (https://cyberusorg.com)
+ */
+
+:root {
+    --loader-scale: 1;
+}
+
+.Loader {
+    background-color: rgba(255, 255, 255, .6);
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    z-index: 75;
+    margin: auto;
+    opacity: 0;
+    animation: appear 1ms 200ms forwards;
+
+    &-Main {
+        @extend %loader;
+    }
+
+    &-Scale {
+        position: absolute;
+        transform: translate(-50%, -50%) scale(var(--loader-scale));
+        inset-inline-start: 50%;
+        inset-block-start: calc(50% - (3px * var(--loader-scale)));
+
+        &:dir(rtl) {
+            transform: translate(50%, -50%) scale(var(--loader-scale));
+        }
+    }
+}

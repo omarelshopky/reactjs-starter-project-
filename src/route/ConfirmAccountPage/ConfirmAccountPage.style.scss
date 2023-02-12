@@ -1,0 +1,77 @@
+/*
+ * @category  StarterProject
+ * @author    Omar Elshopky <omar.elshopky202@gmail.com | info@cyberusorg.com>
+ * @license   http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ * @copyright Copyright (c) 2023 Cyberus Org, Inc (https://cyberusorg.com)
+ */
+
+.ConfirmAccountPage {
+    --content-wrapper-width: 600px;
+
+    &-Wrapper {
+        @include mobile {
+            padding-block-start: 7px;
+        }
+    }
+
+    &-Button {
+        margin-block-start: 12px;
+
+        @include mobile {
+            margin-block-start: 14px;
+            width: 100%;
+        }
+
+        @include desktop {
+            margin-inline-start: 12px;
+        }
+    }
+
+    &-EmailInput {
+        display: none;
+    }
+
+    &-Heading {
+        font-size: 24px;
+        margin-block-end: 12px;
+        margin-block-start: 24px;
+        text-align: center;
+
+        @include mobile {
+            font-size: 28px;
+            margin-block-end: 14px;
+            margin-block-start: 28px;
+            display: none;
+        }
+    }
+
+    &-Form {
+        @include desktop {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            .Field-Message {
+                position: absolute;
+                width: max-content;
+            }
+        }
+    }
+
+    &-WarningMsg {
+        padding-top: 20px;
+        text-align: center;
+        color: var(--primary-error-color);
+        font-size: 15px;
+
+        h2 {
+            color: var(--primary-error-color);
+        }
+    }
+
+    input {
+        @include mobile {
+            width: 100%;
+        }
+    }
+}
